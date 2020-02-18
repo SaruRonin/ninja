@@ -3,19 +3,25 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Game {
 
-    private Rectangle field;
-    private int GAME_WIDTH = 1000;
-    private int GAME_HEIGHT = 500;
+    public static int WIDTH = 1000;
+    public static int HEIGHT = 500;
+    public static int MARGIN = 10;
+    private int GRASS_HEIGHT = 50;
+    private int NINJA_X_START = 50;
 
+    private Rectangle field;
     private Block block;
     private Ninja ninja;
+    private Block grass;
     private boolean dead = false;
 
     public void init() {
-        field = new Rectangle(10,10,GAME_WIDTH,GAME_HEIGHT);
+        field = new Rectangle(MARGIN,MARGIN, WIDTH, HEIGHT);
+        grass = new Block(MARGIN, HEIGHT + MARGIN - GRASS_HEIGHT, WIDTH, GRASS_HEIGHT, Color.GREEN);
         field.draw();
-        block = new Block();
-        ninja = new Ninja();
+
+        block = new Block(WIDTH + MARGIN, HEIGHT - GRASS_HEIGHT - Block.BLOCK_HEIGHT + MARGIN, Color.BLUE);
+        ninja = new Ninja(NINJA_X_START, HEIGHT - Ninja.HEIGHT - GRASS_HEIGHT + MARGIN);
     }
 
     public void start() throws InterruptedException {
@@ -25,19 +31,11 @@ public class Game {
     }
 
     public void move() throws InterruptedException {
-            ninja.jump();
-            Thread.sleep(20);
-            ninja.jump();
-            Thread.sleep(20);
-            ninja.jump();
-            Thread.sleep(20);
-            ninja.fall();
-            Thread.sleep(20);
-            ninja.fall();
-            Thread.sleep(20);
-            ninja.fall();
-            Thread.sleep(20);
+
     }
+
+
+
 }
 
 
