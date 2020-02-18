@@ -13,7 +13,7 @@ public class Ninja implements KeyboardHandler {
 
     public Ninja() {
         isJumping = false;
-        rectangle = new Rectangle(75, 420, 25, 25);
+        rectangle = new Rectangle(75, 480, 25, 25);
         rectangle.fill();
         initKeyboard();
     }
@@ -55,7 +55,7 @@ public class Ninja implements KeyboardHandler {
     }
 
     public boolean reachedFloor(){
-        return rectangle.getY() >= 420;
+        return rectangle.getY() >= 480;
     }
 
     public boolean reachedMaxHeight() {
