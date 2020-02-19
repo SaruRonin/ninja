@@ -27,6 +27,7 @@ public class Game {
     public void start() throws InterruptedException {
         while (!dead) {
             block.move();
+            ninja.jump();
         }
     }
 

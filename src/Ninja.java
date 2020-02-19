@@ -28,6 +28,9 @@ public class Ninja {
         for(int i = 0; i < 10; i++){
             ninjaBlock.translate(0, -2);
         }
+        for(int i = 0; i < 10; i++){
+            ninjaBlock.translate(0, 2);
+        }
     }
 
     public void fall() {

@@ -36,7 +36,7 @@ public class Block {
     public void move() throws InterruptedException {
         block.translate(-1, 0);
         Thread.sleep(5);
-        while(getX() > - (Game.MARGIN + block.getWidth() )){
+        while(getX() > 0){
 
         }
     }
