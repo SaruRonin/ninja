@@ -8,7 +8,7 @@ public class Game {
     private Rectangle ground;
     private Ninja ninja = new Ninja();
     private Block block = new Block();
-    private boolean dead = false;
+    //private boolean dead = false;
 
 
     public void init() {
@@ -19,7 +19,7 @@ public class Game {
 
     public void start() {
 
-        while (true) {
+        while (ninja.isAlive()) {
             try {
                 block.move();
             } catch (InterruptedException e) {
@@ -43,6 +43,10 @@ public class Game {
                     e.printStackTrace();
                 }
             }
+            ninja.hitsHead(block);
         }
+
     }
+
+
 }

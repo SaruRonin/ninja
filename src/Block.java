@@ -10,8 +10,8 @@ public class Block {
     private int y;
 
     public Block() {
-        this.block = block;
-        block = new Rectangle(980, 430, 50, 80);
+       // this.block = block;
+        block = new Rectangle(980, 300, 50, 80);
         block.fill();
 
     }
@@ -23,6 +23,22 @@ public class Block {
         if (block.getX() < -40) {
             block.translate(980, 0);
         }
+    }
+
+    public int getX(){
+        return block.getX();
+    }
+
+    public int getY(){
+        return block.getY();
+    }
+
+    public int getWidth(){
+        return block.getWidth();
+    }
+
+    public int getHeight(){
+        return block.getHeight();
     }
 
     }
