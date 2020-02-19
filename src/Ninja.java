@@ -1,52 +1,78 @@
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-public class Ninja {
+public class Ninja implements KeyboardHandler {
 
     private boolean isJumping;
-    private Rectangle ninjaBlock;
-    private int x;
-    private int y;
-    public static int WIDTH = 50;
-    public static int HEIGHT = 50;
+    private Rectangle rectangle;
 
-    public Ninja(int x, int y) {
-        this.x = x;
-        this.y = y;
-        ninjaBlock = new Rectangle(x, y, WIDTH,  HEIGHT);
-        ninjaBlock.fill();
+
+
+    public Ninja() {
+        isJumping = false;
+        rectangle = new Rectangle(75, 480, 25, 25);
+        rectangle.fill();
+        initKeyboard();
     }
 
-    public int getHeight(){
-        return HEIGHT;
-    }
-
-    public int getWIDTH(){
-        return WIDTH;
+    public void initKeyboard() {
+        Keyboard keyboard = new Keyboard(this);
+        KeyboardEvent upArrowPressed = new KeyboardEvent();
+        upArrowPressed.setKey(KeyboardEvent.KEY_UP);
+        upArrowPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(upArrowPressed);
     }
 
     public void jump() {
-        for(int i = 0; i < 10; i++){
-            ninjaBlock.translate(0, -2);
-        }
-        for(int i = 0; i < 10; i++){
-            ninjaBlock.translate(0, 2);
-        }
+        isJumping = true;
     }
 
     public void fall() {
+
         isJumping = false;
-        ninjaBlock.translate(0, 2);
     }
 
-    public int getX() {
-        return x;
+    public boolean isJumping() {
+        return isJumping;
     }
 
-    public int getY() {
-        return y;
+    public void moveUp() {
+        if (reachedMaxHeight()){
+            fall();
+            return;
+        }
+        rectangle.translate(0, -5);
     }
 
-    public boolean hitHead(Block block){
-        return false;
+    public void moveDown() {
+        if(reachedFloor()){
+            return;
+        }
+        rectangle.translate(0, 5);
+    }
+
+    public boolean reachedFloor(){
+        return rectangle.getY() >= 480;
+    }
+
+    public boolean reachedMaxHeight() {
+        return rectangle.getY() <= 280;
+    }
+
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_UP:
+                jump();
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
     }
 }
