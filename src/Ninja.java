@@ -3,18 +3,23 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Ninja implements KeyboardHandler {
 
     private boolean isJumping;
     private Rectangle rectangle;
+    private Picture picture;
 
 
 
     public Ninja() {
         isJumping = false;
-        rectangle = new Rectangle(75, 480, 25, 25);
-        rectangle.fill();
+        //rectangle = new Rectangle(75, 406, 25, 25);
+       // rectangle.fill();
+        picture = new Picture(75, 386, "small itachi running.gif");
+        picture.draw();
+
         initKeyboard();
     }
 
@@ -44,22 +49,22 @@ public class Ninja implements KeyboardHandler {
             fall();
             return;
         }
-        rectangle.translate(0, -5);
+        picture.translate(0, -5);
     }
 
     public void moveDown() {
         if(reachedFloor()){
             return;
         }
-        rectangle.translate(0, 5);
+        picture.translate(0, 5);
     }
 
     public boolean reachedFloor(){
-        return rectangle.getY() >= 480;
+        return picture.getY() >= 386;
     }
 
     public boolean reachedMaxHeight() {
-        return rectangle.getY() <= 280;
+        return picture.getY() <= 250;
     }
 
     @Override
