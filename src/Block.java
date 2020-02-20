@@ -11,13 +11,13 @@ public class Block {
 
     public Block() {
        // this.block = block;
-        block = new Rectangle(980, 300, 50, 80);
+        block = new Rectangle(300, 300, 20, 80);
         block.fill();
 
     }
 
     public void move() throws InterruptedException {
-        block.translate(-5, 0);
+        block.translate(-1, 0);
         Thread.sleep(5);
         block.fill();
         if (block.getX() < -40) {

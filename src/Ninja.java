@@ -12,7 +12,7 @@ public class Ninja implements KeyboardHandler {
 
     public Ninja() {
         isJumping = false;
-        rectangle = new Rectangle(75, 480, 25, 25);
+        rectangle = new Rectangle(75, 480, 50, 25);
         rectangle.fill();
         initKeyboard();
         alive = true;
@@ -99,10 +99,15 @@ public class Ninja implements KeyboardHandler {
     }
 
     public void hitsHead(Block block){
-        boolean sameX = (getX() > block.getX() && getX() < block.getX() + block.getWidth());
-        boolean sameY = (getY() > block.getY() && getY() < block.getY() + block.getHeight());
-        if(sameX && sameY){
+        boolean y1Y12 = getY() >= block.getY() && getY() <= block.getY() + block.getHeight();//
+        boolean x1X12 = getX() >= block.getX() && getX() <= block.getX() + block.getWidth();
+        boolean x2X12 = getX() + getWidth() >= block.getX() && getX() + getWidth() <= block.getX() + getWidth();
+
+        if(y1Y12 && ((x1X12 || x2X12) )){
             dies();
+
         }
     }
+
+
 }
