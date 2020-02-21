@@ -9,6 +9,9 @@ public class Ninja implements KeyboardHandler {
     private boolean isJumping;
     private Rectangle rectangle;
     private boolean alive;
+    private boolean onTopOfBlock;
+    private int x;
+    private int y;
 
 
     public Ninja() {
@@ -17,6 +20,7 @@ public class Ninja implements KeyboardHandler {
         rectangle.fill();
         initKeyboard();
         alive = true;
+        onTopOfBlock = false;
     }
 
     public void initKeyboard() {
@@ -48,15 +52,16 @@ public class Ninja implements KeyboardHandler {
         rectangle.translate(0, -5);
     }
 
-    public void moveLeft(Block block){
-        rectangle.translate(block.getX(),0);
-    }
 
     public void moveDown() {
         if(reachedFloor()){
             return;
         }
         rectangle.translate(0, 5);
+    }
+
+    public void moveLeft(int x){
+        rectangle.translate(x, 0);
     }
 
     public boolean reachedFloor(){
@@ -129,7 +134,6 @@ public class Ninja implements KeyboardHandler {
         boolean rightSideBetweenLeftRightBlock = getX() + getWidth() >= block.getX() && getX() + getWidth() <= block.getX() + getWidth();
        if(getY() + getHeight() == block.getY() && (leftSideBetweenLeftRightBlock || rightSideBetweenLeftRightBlock) && isJumping == false){
            System.out.println("On top of block");
-
             return true;
        }
        return false;

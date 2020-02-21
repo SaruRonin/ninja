@@ -34,12 +34,12 @@ public class Game {
                     e.printStackTrace();
                 }
 
-            } else {
-                if(!ninja.onTopOfBlock(block)){
-                    ninja.moveDown();
-                }
-                System.out.println("Ninja is on top of block!");
+            } else if(ninja.onTopOfBlock(block)){
+                ninja.moveLeft(-1);
+                }else {
+                //System.out.println("Ninja is on top of block!");
 
+                ninja.moveDown();
 
                 try {
                     Thread.sleep(5);
