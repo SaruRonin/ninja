@@ -44,6 +44,7 @@ public class Game {
                 }
             }
             ninja.hitsHead(block);
+            ninja.frontHitsBlock(block);
         }
 
     }

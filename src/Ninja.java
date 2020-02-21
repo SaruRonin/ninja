@@ -97,15 +97,23 @@ public class Ninja implements KeyboardHandler {
     public void dies(){
         alive = false;
     }
-
-    public void hitsHead(Block block){
-        boolean y1Y12 = getY() >= block.getY() && getY() <= block.getY() + block.getHeight();//
-        boolean x1X12 = getX() >= block.getX() && getX() <= block.getX() + block.getWidth();
-        boolean x2X12 = getX() + getWidth() >= block.getX() && getX() + getWidth() <= block.getX() + getWidth();
-
-        if(y1Y12 && ((x1X12 || x2X12) )){
+    // Ninja hits front side with backside block
+    public void frontHitsBlock(Block block){
+        boolean frontBetweenLeftRightBlock = getX() + getWidth() > block.getX() && getX() + getWidth() < block.getX() + block.getWidth();
+        boolean topBetweenTopBottomBlock = getY() > block.getY() && getY() < block.getY() + block.getHeight();
+        boolean bottomBetweenTopBottomBlock = getY() + getHeight() > block.getY() && getY() + getHeight() < block.getY() + block.getHeight();
+        if(frontBetweenLeftRightBlock && ((topBetweenTopBottomBlock || bottomBetweenTopBottomBlock))){
             dies();
+        }
+    }
 
+    // Ninja hits head on bottom of block
+    public void hitsHead(Block block){
+        boolean headTopBetweenTopBottomBlock = getY() >= block.getY() && getY() <= block.getY() + block.getHeight();//
+        boolean leftSideBetweenLeftRightBlock = getX() >= block.getX() && getX() <= block.getX() + block.getWidth();
+        boolean rightSideBetweenLeftRightBlock = getX() + getWidth() >= block.getX() && getX() + getWidth() <= block.getX() + getWidth();
+        if(headTopBetweenTopBottomBlock && ((leftSideBetweenLeftRightBlock || rightSideBetweenLeftRightBlock) && isJumping == true)){
+            dies();
         }
     }
 
