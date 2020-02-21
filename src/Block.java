@@ -11,7 +11,7 @@ public class Block {
 
     public Block() {
        // this.block = block;
-        block = new Rectangle(300, 300, 20, 80);
+        block = new Rectangle(300, 400, 20, 80);
         block.fill();
 
     }

@@ -35,8 +35,12 @@ public class Game {
                 }
 
             } else {
+                if(!ninja.onTopOfBlock(block)){
+                    ninja.moveDown();
+                }
+                System.out.println("Ninja is on top of block!");
 
-                ninja.moveDown();
+
                 try {
                     Thread.sleep(5);
                 } catch (InterruptedException e) {
