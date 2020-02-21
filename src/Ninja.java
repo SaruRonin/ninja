@@ -29,6 +29,14 @@ public class Ninja implements KeyboardHandler {
         upArrowPressed.setKey(KeyboardEvent.KEY_UP);
         upArrowPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(upArrowPressed);
+        KeyboardEvent rightArrowPressed = new KeyboardEvent();
+        rightArrowPressed.setKey(KeyboardEvent.KEY_RIGHT);
+        rightArrowPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(rightArrowPressed);
+        KeyboardEvent leftArrowPressed = new KeyboardEvent();
+        leftArrowPressed.setKey(KeyboardEvent.KEY_LEFT);
+        leftArrowPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(leftArrowPressed);
     }
 
     public void jump() {
@@ -60,7 +68,15 @@ public class Ninja implements KeyboardHandler {
         rectangle.translate(0, 5);
     }
 
-    public void moveLeft(int x){
+    public void moveRight(){
+        rectangle.translate(5, 0);
+    }
+
+    public void moveLeft(){
+        rectangle.translate(-5, 0);
+    }
+
+    public void moveLeftwithBlock(int x){
         rectangle.translate(x, 0);
     }
 
@@ -80,8 +96,16 @@ public class Ninja implements KeyboardHandler {
             case KeyboardEvent.KEY_UP:
                 jump();
                 break;
+            case KeyboardEvent.KEY_RIGHT:
+                moveRight();
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                moveLeft();
+                break;
         }
     }
+
+
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {

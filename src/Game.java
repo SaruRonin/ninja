@@ -25,7 +25,7 @@ public class Game {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+// When ninja is jumping up it is moving up
             if (ninja.isJumping()) {
                 ninja.moveUp();
                 try {
@@ -33,11 +33,11 @@ public class Game {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-            } else if(ninja.onTopOfBlock(block)){
-                ninja.moveLeft(-1);
+// When ninja is falling down on top of a block he stays on top and travels with him left
+            } else if(ninja.onTopOfBlock(block) && !ninja.isJumping()){
+                ninja.moveLeftwithBlock(-1);
                 }else {
-                //System.out.println("Ninja is on top of block!");
+// Ninja is falling down
 
                 ninja.moveDown();
 
