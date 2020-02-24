@@ -3,6 +3,7 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Ninja implements KeyboardHandler {
 
@@ -12,12 +13,15 @@ public class Ninja implements KeyboardHandler {
     private boolean onTopOfBlock;
     private int x;
     private int y;
+    private Picture picture;
 
 
     public Ninja() {
         isJumping = false;
-        rectangle = new Rectangle(75, 480, 50, 25);
-        rectangle.fill();
+        //rectangle = new Rectangle(75, 406, 25, 25);
+       // rectangle.fill();
+        picture = new Picture(75, 386, "small itachi running.gif");
+        picture.draw();
         initKeyboard();
         alive = true;
         onTopOfBlock = false;
@@ -57,7 +61,7 @@ public class Ninja implements KeyboardHandler {
             fall();
             return;
         }
-        rectangle.translate(0, -5);
+        picture.translate(0, -5);
     }
 
 
@@ -65,7 +69,7 @@ public class Ninja implements KeyboardHandler {
         if(reachedFloor()){
             return;
         }
-        rectangle.translate(0, 5);
+        picture.translate(0, 5);
     }
 
     public void moveRight(){
@@ -81,13 +85,13 @@ public class Ninja implements KeyboardHandler {
     }
 
     public boolean reachedFloor(){
-        return rectangle.getY() >= 480;
+        return picture.getY() >= 386;
     }
 
 
 
     public boolean reachedMaxHeight() {
-        return rectangle.getY() <= 280;
+        return picture.getY() <= 250;
     }
 
     @Override
@@ -112,18 +116,18 @@ public class Ninja implements KeyboardHandler {
     }
 
     public int getX(){
-        return rectangle.getX();
+        return picture.getX();
     }
 
     public int getY(){
-        return rectangle.getY();
+        return picture.getY();
     }
     public int getWidth(){
-        return rectangle.getWidth();
+        return picture.getWidth();
     }
 
     public int getHeight(){
-        return rectangle.getHeight();
+        return picture.getHeight();
     }
 
     public boolean isAlive(){

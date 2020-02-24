@@ -4,16 +4,24 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
+
     private Rectangle field;
-    private Rectangle ground;
-    private Ninja ninja = new Ninja();
-    private Block block = new Block();
-    //private boolean dead = false;
+    private Picture background;
+    private Ninja ninja;
+    private Block block;
+    private boolean dead = false;
 
 
     public void init() {
-        field = new Rectangle(10, 10, 1000, 500);
-        field.setColor(Color.GREEN);
+
+        //field = new Rectangle(10, 10, 1000, 500);
+        background = new Picture(0, 0, "background.png");
+        background.draw();
+        //field.setColor(Color.GREEN);
+        //field.fill();
+        ninja = new Ninja();
+        block = new Block();
+
 
     }
 
