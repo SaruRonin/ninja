@@ -8,23 +8,26 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Ninja implements KeyboardHandler {
 
     private boolean isJumping;
-    private Rectangle rectangle;
     private boolean alive;
     private boolean onTopOfBlock;
-    private int x;
-    private int y;
-    private Picture picture;
+    private Game game = new Game();
+
+    Picture frame1 =  new Picture(75, 360, "pictures/NinjaRunning_Frame01_50px.png");
+    Picture frame2 = new Picture(75, 360, "pictures/NinjaRunning_Frame02_50px.png");
+    //Picture frame3 = new Picture(75, 386, "pictures/NinjaRunning_Frame03_50px.png");
+    //Picture frame4 = new Picture(75, 386, "pictures/NinjaRunning_Frame04_50px.png");
+    //Picture frame5 = new Picture(75, 386, "pictures/NinjaRunning_Frame05_50px.png");
+    //Picture frame6 = new Picture(75, 386, "pictures/NinjaRunning_Frame06_50px.png");
 
 
-    public Ninja() {
+
+
+    public Ninja() throws InterruptedException {
         isJumping = false;
-        //rectangle = new Rectangle(75, 406, 25, 25);
-       // rectangle.fill();
-        picture = new Picture(75, 386, "small itachi running.gif");
-        picture.draw();
         initKeyboard();
         alive = true;
         onTopOfBlock = false;
+        running();
     }
 
     public void initKeyboard() {
@@ -41,6 +44,34 @@ public class Ninja implements KeyboardHandler {
         leftArrowPressed.setKey(KeyboardEvent.KEY_LEFT);
         leftArrowPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(leftArrowPressed);
+        KeyboardEvent rPressed = new KeyboardEvent();
+        rPressed.setKey(KeyboardEvent.KEY_R);
+        rPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(rPressed);
+    }
+
+    public void running() throws InterruptedException {
+        while (alive && !isJumping) {
+            //Thread.sleep(10);
+            frame1.draw();
+            //Thread.sleep(10);
+            //frame1.delete();
+            //frame2.draw();
+            //Thread.sleep(10);
+            //frame2.delete();
+            //frame3.draw();
+            //Thread.sleep(10);
+            //frame3.delete();
+            //frame4.draw();
+            //Thread.sleep(10);
+            //frame4.delete();
+            //frame5.draw();
+            //Thread.sleep(10);
+            //frame5.delete();
+            //frame6.draw();
+            //Thread.sleep(10);
+            //frame6.delete();
+        }
     }
 
     public void jump() {
@@ -57,41 +88,57 @@ public class Ninja implements KeyboardHandler {
     }
 
     public void moveUp() {
+        frame1.delete();
+        frame2.draw();
         if (reachedMaxHeight()){
             fall();
             return;
         }
-        picture.translate(0, -5);
+        frame2.translate(0, -5);
+
     }
 
 
-    public void moveDown() {
+    public void moveDown() throws InterruptedException {
         if(reachedFloor()){
+            frame2.delete();
+            frame1.draw();
             return;
         }
-        picture.translate(0, 5);
+        frame2.translate(0, 5);
+
     }
 
     public void moveRight(){
-        rectangle.translate(5, 0);
+        if(!alive){
+            return;
+        }
+        frame2.translate(10, 0);
+        frame1.translate(10,0);
     }
 
     public void moveLeft(){
-        rectangle.translate(-5, 0);
+        if(!alive){
+            return;
+        }
+        frame2.translate(-10, 0);
+        frame1.translate(-10,0);
     }
 
     public void moveLeftwithBlock(int x){
-        rectangle.translate(x, 0);
+        frame2.translate(x, 0);
+        frame1.translate(x,0);
     }
 
     public boolean reachedFloor(){
-        return picture.getY() >= 386;
+        return frame2.getY() >= 360;
+
     }
 
 
 
     public boolean reachedMaxHeight() {
-        return picture.getY() <= 250;
+        return frame2.getY() <= 250;
     }
 
     @Override
@@ -106,6 +153,14 @@ public class Ninja implements KeyboardHandler {
             case KeyboardEvent.KEY_LEFT:
                 moveLeft();
                 break;
+            case KeyboardEvent.KEY_R:
+                try {
+                    game.restart();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
         }
     }
 
@@ -116,18 +171,20 @@ public class Ninja implements KeyboardHandler {
     }
 
     public int getX(){
-        return picture.getX();
+        return frame2.getX();
+
+
     }
 
     public int getY(){
-        return picture.getY();
+        return frame2.getY();
     }
     public int getWidth(){
-        return picture.getWidth();
+        return frame2.getWidth();
     }
 
     public int getHeight(){
-        return picture.getHeight();
+        return frame2.getHeight();
     }
 
     public boolean isAlive(){
@@ -135,6 +192,7 @@ public class Ninja implements KeyboardHandler {
     }
 
     public void dies(){
+
         alive = false;
     }
     // Ninja hits front side with backside block

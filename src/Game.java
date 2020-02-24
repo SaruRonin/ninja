@@ -5,29 +5,34 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
 
-    private Rectangle field;
+
     private Picture background;
     private Ninja ninja;
     private Block block;
     private boolean dead = false;
 
 
-    public void init() {
-
-        //field = new Rectangle(10, 10, 1000, 500);
-        background = new Picture(0, 0, "background.png");
+    public void init() throws InterruptedException {
+        background = new Picture(0, 0, "resources/pictures/background.png");
         background.draw();
-        //field.setColor(Color.GREEN);
-        //field.fill();
         ninja = new Ninja();
         block = new Block();
+        Sound sound = new Sound();
+        sound.playMusic("Resources/Sound/fantasyIntro.au");
 
 
     }
 
-    public void start() {
+    public void restart() throws InterruptedException {
+        start();
+    }
+
+    public void start() throws InterruptedException {
 
         while (ninja.isAlive()) {
+            if ( block.getX() == -40){
+                block = new Block();
+            }
             try {
                 block.move();
             } catch (InterruptedException e) {

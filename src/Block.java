@@ -12,34 +12,46 @@ public class Block {
     private int y;
 
     public Block() {
-<<<<<<< HEAD
-       // this.block = block;
-        block = new Rectangle(300, 400, 20, 80);
-=======
-        this.block = block;
-        block = new Rectangle(800,300,100,60);
->>>>>>> master
+        block = blocks();
         block.fill();
         block.setColor(Color.RED);
-        //pillar = new Picture(500, 371, "pillar.png");
-        //pillar.draw();
+
 
     }
 
     public void move() throws InterruptedException {
         block.translate(-5, 0);
         Thread.sleep(15);
-        if (block.getX() < -40) {
-            block.translate(980, 0);
+        if (block.getX()  < -10) {
+            block.delete();
+
         }
     }
 
-    public void  blocks() {
-        Rectangle LongBlock = new Rectangle(800, 380, 100,60);
-        Rectangle lowLongBlock = new Rectangle(800,380,100,30);
-        Rectangle highLongBlock = new Rectangle(800,410,100,60);
-        Rectangle highShortBlock = new Rectangle(800,410,30,60);
-        Rectangle regularBlock = new Rectangle(800, 371, 30, 60);
+    public Rectangle  blocks() {
+       int block = (int) Math.floor(Math.random() * 6);
+        Rectangle LongBlock = new Rectangle(800, 360, 100, 60);
+        Rectangle lowLongBlock = new Rectangle(800, 360, 100, 30);
+        Rectangle highLongBlock = new Rectangle(800, 320, 100, 60);
+        Rectangle highShortBlock = new Rectangle(800, 320, 30, 60);
+        Rectangle regularBlock = new Rectangle(800, 360, 30, 60);
+        Rectangle standardBlock = new Rectangle(800, 320, 20, 80);
+
+       if (block == 1){
+            return LongBlock;
+        } else if(block == 2) {
+            return lowLongBlock;
+        }else if(block ==3) {
+            return highLongBlock;
+        }else if(block == 4) {
+            return highShortBlock;
+        }else if(block == 5) {
+            return regularBlock;
+        } else {
+            return standardBlock;
+
+
+        }
 
 
     }
