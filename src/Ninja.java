@@ -20,7 +20,6 @@ public class Ninja implements KeyboardHandler {
        // rectangle.fill();
         picture = new Picture(75, 386, "small itachi running.gif");
         picture.draw();
-
         initKeyboard();
         alive = true;
     }
@@ -83,18 +82,18 @@ public class Ninja implements KeyboardHandler {
     }
 
     public int getX(){
-        return rectangle.getX();
+        return picture.getX();
     }
 
     public int getY(){
-        return rectangle.getY();
+        return picture.getY();
     }
     public int getWidth(){
-        return rectangle.getWidth();
+        return picture.getWidth();
     }
 
     public int getHeight(){
-        return rectangle.getHeight();
+        return picture.getHeight();
     }
 
     public boolean isAlive(){
@@ -105,16 +104,16 @@ public class Ninja implements KeyboardHandler {
         alive = false;
     }
 
-    public void hitsHead(Block block){
+    public void hits(Block block){
         boolean y1Y12 = getY() >= block.getY() && getY() <= block.getY() + block.getHeight();//
         boolean x1X12 = getX() >= block.getX() && getX() <= block.getX() + block.getWidth();
         boolean x2X12 = getX() + getWidth() >= block.getX() && getX() + getWidth() <= block.getX() + getWidth();
 
+
         if(y1Y12 && ((x1X12 || x2X12) )){
             dies();
 
+
         }
     }
-
-
 }

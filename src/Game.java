@@ -4,24 +4,23 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
+
     private Rectangle field;
     private Picture background;
     private Ninja ninja;
     private Block block;
-    private Block pillar;
     private boolean dead = false;
 
 
     public void init() {
 
         //field = new Rectangle(10, 10, 1000, 500);
-        background = new Picture(0,0,"background.png");
+        background = new Picture(0, 0, "background.png");
         background.draw();
         //field.setColor(Color.GREEN);
         //field.fill();
         ninja = new Ninja();
         block = new Block();
-
 
 
     }
@@ -52,7 +51,7 @@ public class Game {
                     e.printStackTrace();
                 }
             }
-            ninja.hitsHead(block);
+
         }
 
     }
