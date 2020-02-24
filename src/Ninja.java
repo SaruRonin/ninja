@@ -9,6 +9,7 @@ public class Ninja implements KeyboardHandler {
 
     private boolean isJumping;
     private Rectangle rectangle;
+    private boolean alive;
     private Picture picture;
 
 
@@ -21,6 +22,7 @@ public class Ninja implements KeyboardHandler {
         picture.draw();
 
         initKeyboard();
+        alive = true;
     }
 
     public void initKeyboard() {
@@ -78,6 +80,41 @@ public class Ninja implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-
     }
+
+    public int getX(){
+        return rectangle.getX();
+    }
+
+    public int getY(){
+        return rectangle.getY();
+    }
+    public int getWidth(){
+        return rectangle.getWidth();
+    }
+
+    public int getHeight(){
+        return rectangle.getHeight();
+    }
+
+    public boolean isAlive(){
+        return alive;
+    }
+
+    public void dies(){
+        alive = false;
+    }
+
+    public void hitsHead(Block block){
+        boolean y1Y12 = getY() >= block.getY() && getY() <= block.getY() + block.getHeight();//
+        boolean x1X12 = getX() >= block.getX() && getX() <= block.getX() + block.getWidth();
+        boolean x2X12 = getX() + getWidth() >= block.getX() && getX() + getWidth() <= block.getX() + getWidth();
+
+        if(y1Y12 && ((x1X12 || x2X12) )){
+            dies();
+
+        }
+    }
+
+
 }

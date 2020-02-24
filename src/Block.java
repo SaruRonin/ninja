@@ -37,4 +37,20 @@ public class Block {
 
     }
 
+    public int getX(){
+        return block.getX();
+    }
+
+    public int getY(){
+        return block.getY();
+    }
+
+    public int getWidth(){
+        return block.getWidth();
+    }
+
+    public int getHeight(){
+        return block.getHeight();
+    }
+
     }

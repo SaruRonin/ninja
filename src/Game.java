@@ -28,7 +28,7 @@ public class Game {
 
     public void start() {
 
-        while (true) {
+        while (ninja.isAlive()) {
             try {
                 block.move();
             } catch (InterruptedException e) {
@@ -52,6 +52,10 @@ public class Game {
                     e.printStackTrace();
                 }
             }
+            ninja.hitsHead(block);
         }
+
     }
+
+
 }
