@@ -15,7 +15,7 @@ public class Game {
     public void init() throws InterruptedException {
         background = new Picture(0, 0, "resources/pictures/background.png");
         background.draw();
-        ninja = new Ninja();
+        ninja = new Ninja(this);
         block = new Block();
         Sound sound = new Sound();
         sound.playMusic("Resources/Sound/fantasyIntro.au");
@@ -24,6 +24,7 @@ public class Game {
     }
 
     public void restart() throws InterruptedException {
+        dead = false;
         start();
     }
 

@@ -4,17 +4,11 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Block {
 
-    private Rectangle block;
-    private Rectangle back;
-    private Picture pillar;
-
-    private int x;
-    private int y;
+    private Picture block;
 
     public Block() {
         block = blocks();
-        block.fill();
-        block.setColor(Color.RED);
+        block.draw();
 
 
     }
@@ -28,14 +22,22 @@ public class Block {
         }
     }
 
-    public Rectangle  blocks() {
+    public Picture  blocks() {
        int block = (int) Math.floor(Math.random() * 6);
-        Rectangle LongBlock = new Rectangle(800, 360, 100, 60);
-        Rectangle lowLongBlock = new Rectangle(800, 360, 100, 30);
-        Rectangle highLongBlock = new Rectangle(800, 320, 100, 60);
-        Rectangle highShortBlock = new Rectangle(800, 320, 30, 60);
-        Rectangle regularBlock = new Rectangle(800, 360, 30, 60);
-        Rectangle standardBlock = new Rectangle(800, 320, 20, 80);
+       Picture LongBlock = new Picture(800,360,"resources/pictures/LongBlock.png");
+        Picture lowLongBlock = new Picture(800,360,"resources/pictures/lowLongBlock.png");
+        Picture highLongBlock = new Picture(800,320,"resources/pictures/HighLongBlock.png");
+        Picture highShortBlock = new Picture(800,320,"resources/pictures/highShortBlock.png");
+        Picture regularBlock = new Picture(800,360,"resources/pictures/regularBlock.png");
+        Picture standardBlock = new Picture(800,320,"resources/pictures/standardBlock.png");
+
+
+        //Rectangle LongBlock = new Rectangle(800, 360, 100, 60);
+        //Rectangle lowLongBlock = new Rectangle(800, 360, 100, 30);
+        //Rectangle highLongBlock = new Rectangle(800, 320, 100, 60);
+        //Rectangle highShortBlock = new Rectangle(800, 320, 30, 60);
+        //Rectangle regularBlock = new Rectangle(800, 360, 30, 60);
+        //Rectangle standardBlock = new Rectangle(800, 320, 20, 80);
 
        if (block == 1){
             return LongBlock;

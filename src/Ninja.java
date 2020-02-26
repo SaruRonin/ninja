@@ -10,19 +10,20 @@ public class Ninja implements KeyboardHandler {
     private boolean isJumping;
     private boolean alive;
     private boolean onTopOfBlock;
-    private Game game = new Game();
+    private Game game;
 
-    Picture frame1 =  new Picture(75, 360, "pictures/NinjaRunning_Frame01_50px.png");
-    Picture frame2 = new Picture(75, 360, "pictures/NinjaRunning_Frame02_50px.png");
-    //Picture frame3 = new Picture(75, 386, "pictures/NinjaRunning_Frame03_50px.png");
-    //Picture frame4 = new Picture(75, 386, "pictures/NinjaRunning_Frame04_50px.png");
-    //Picture frame5 = new Picture(75, 386, "pictures/NinjaRunning_Frame05_50px.png");
-    //Picture frame6 = new Picture(75, 386, "pictures/NinjaRunning_Frame06_50px.png");
-
-
+    Picture frame1 =  new Picture(75, 360, "resources/pictures/NinjaRunning_Frame01_50px.png");
+    Picture frame2 = new Picture(75, 360, "resources/pictures/NinjaRunning_Frame02_50px.png");
+    //Picture frame3 = new Picture(75, 386, "resources/pictures/NinjaRunning_Frame03_50px.png");
+    //Picture frame4 = new Picture(75, 386, "resources/pictures/NinjaRunning_Frame04_50px.png");
+    //Picture frame5 = new Picture(75, 386, "resources/pictures/NinjaRunning_Frame05_50px.png");
+    //Picture frame6 = new Picture(75, 386, "resources/pictures/NinjaRunning_Frame06_50px.png");
 
 
-    public Ninja() throws InterruptedException {
+
+
+    public Ninja(Game game) throws InterruptedException {
+        this.game =game;
         isJumping = false;
         initKeyboard();
         alive = true;
@@ -153,12 +154,12 @@ public class Ninja implements KeyboardHandler {
             case KeyboardEvent.KEY_LEFT:
                 moveLeft();
                 break;
-            case KeyboardEvent.KEY_R:
+            /*case KeyboardEvent.KEY_R:
                 try {
                     game.restart();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
+                }*/
 
 
         }
